@@ -21,6 +21,13 @@ public class API : NSObject{
     class var sharedInstance : API {
         return API()
     }
+    
+    func getUserSteemitProfile(user_name : String, completion : APICompletionHandler, failure : APIFailureHandler) {
+        let urlStr = "https://steemit.com/@\(user_name).json"
+        let url = URL.init(string: urlStr)
+        let request = URLRequest.init(url: url!)
+        self.forwardRequest(request: request, httpMethod: HttpMethods.HttpMethod_GET, completion: completion, failure: failure)
+    }
  
     func getTopHeadlinesWith(countryCode : String, completion : APICompletionHandler, failure : APIFailureHandler) {
         let urlStr = "https://newsapi.org/v2/top-headlines?country=\(countryCode)&apiKey=\(NewsApi.key)"

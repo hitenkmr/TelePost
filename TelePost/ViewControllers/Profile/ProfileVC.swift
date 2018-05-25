@@ -20,6 +20,7 @@ class ProfileVC: UIViewController {
         if let username = UserDefaults.standard.object(forKey: UserDataSaveConstants.st_userName_save) as? String {
             self.userNameLabel.text = username
             self.navigationItem.title = "User Profile"
+           self.getUserProfileWith(username: username)
         }
         
         logoutBtn.setTitle("Logout", for: .normal)
@@ -38,5 +39,24 @@ class ProfileVC: UIViewController {
         UserDefaults.standard.synchronize()
         let mainVc : MainVC = MainVC.instantiateWithStoryboard(appStoryboard: .SB_Main) as! MainVC
          AppDelegate.window?.rootViewController = mainVc
+    }
+    
+    //MARK : WEB SERVICES
+    
+    func getUserProfileWith(username : String) {
+        self.startAnimator()
+        APIMaster.getUserSteemitProfile(user_name: username, completion: { (json, httpResponse) in
+            self.stopAnimator()
+            if let jsonObj = json, let status = jsonObj["status"] as? String {
+                if status == "200" {
+                    
+                }
+            }
+        }) { (error) in
+            DispatchQueue.main.async(execute: {
+                self.stopAnimator()
+                self.showAlertWith(title: "Error", message: error.localizedDescription)
+            })
+        }
     }
 }

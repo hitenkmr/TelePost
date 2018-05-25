@@ -15,6 +15,7 @@
 		BE16DA4720B5A28E00B4CC44 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE16DA4620B5A28E00B4CC44 /* News.storyboard */; };
 		BE16DA4B20B5A45100B4CC44 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE16DA4A20B5A45100B4CC44 /* Profile.storyboard */; };
 		BE16DA4D20B5A49D00B4CC44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16DA4C20B5A49D00B4CC44 /* ProfileVC.swift */; };
+		BE16DA5220B7F6CF00B4CC44 /* SteemitUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16DA5120B7F6CF00B4CC44 /* SteemitUser.swift */; };
 		BE2189DC20AC68C5003DE215 /* TPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2189DB20AC68C5003DE215 /* TPAppDelegate.swift */; };
 		BE2189E120AC68C5003DE215 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2189DF20AC68C5003DE215 /* Main.storyboard */; };
 		BE2189E320AC68C5003DE215 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2189E220AC68C5003DE215 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		BE16DA4620B5A28E00B4CC44 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		BE16DA4A20B5A45100B4CC44 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE16DA4C20B5A49D00B4CC44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		BE16DA5120B7F6CF00B4CC44 /* SteemitUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteemitUser.swift; sourceTree = "<group>"; };
 		BE2189D820AC68C5003DE215 /* TelePost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelePost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2189DB20AC68C5003DE215 /* TPAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPAppDelegate.swift; sourceTree = "<group>"; };
 		BE2189E020AC68C5003DE215 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -157,6 +159,14 @@
 				BE16DA4C20B5A49D00B4CC44 /* ProfileVC.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		BE16DA5020B7F6B900B4CC44 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				BE16DA5120B7F6CF00B4CC44 /* SteemitUser.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		BE2189CF20AC68C4003DE215 = {
@@ -288,6 +298,7 @@
 		BE537C2B20ACD7C400676CBD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BE16DA5020B7F6B900B4CC44 /* User */,
 				BE537C2E20ACD82000676CBD /* Top Headline */,
 			);
 			path = Models;
@@ -502,6 +513,7 @@
 				BE2189DC20AC68C5003DE215 /* TPAppDelegate.swift in Sources */,
 				BE537C3020ACD84900676CBD /* Source.swift in Sources */,
 				BE218A0C20AC6A49003DE215 /* API.swift in Sources */,
+				BE16DA5220B7F6CF00B4CC44 /* SteemitUser.swift in Sources */,
 				BE218A0A20AC6A39003DE215 /* Constants.swift in Sources */,
 				BE16DA3F20B5A17900B4CC44 /* Client.swift in Sources */,
 				BE537C3520ACE13D00676CBD /* NSAttributedString.swift in Sources */,

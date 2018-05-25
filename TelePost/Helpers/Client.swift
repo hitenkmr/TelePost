@@ -25,7 +25,7 @@ let get_accounts = "https://api.steemjs.com/get_accounts?"
 
 let get_content_replies = "https://api.steemjs.com/get_content_replies?"
 
-let get_login_url = "https://v2.steemconnect.com/oauth2/authorize?client_id=tele-post-app&redirect_uri=https://github.com/cnsteem/sc2-angular&scope=vote,comment"
+let get_login_url = "https://v2.steemconnect.com/oauth2/authorize?client_id=telepost&redirect_uri=https://github.com/cnsteem/sc2-angular&scope=vote"
 
 //GET /get_search
 let get_search_result = "https://api.asksteem.com/search?q=steemthink"
