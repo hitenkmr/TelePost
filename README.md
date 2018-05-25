@@ -2,7 +2,7 @@
 TelePost allow users to view news that are the top headlines of the day according to their country. 
 The news are fetched from the News API containing all the news and to let the user get to know about what's happening around.
 
-![Image missing](https://im.ezgif.com/tmp/ezgif-1-28afa472a1.gif)
+![alt text](https://thumbs.gfycat.com/HardtofindHonestGermanspaniel-max-1mb.gif)
 
 # Current Features
 TelePost app is in it's development phase, which provide following features :-
