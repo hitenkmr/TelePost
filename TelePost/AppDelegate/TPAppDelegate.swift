@@ -72,6 +72,15 @@ class TPAppDelegate: UIResponder, UIApplicationDelegate {
         return requiredDateStr
     }
     
+    func attrubutedTextWithAttributes(_ fontName : String, fontSize : CGFloat, textColor : UIColor, originalString : String) -> NSMutableAttributedString {
+        
+        let attributedStr = NSMutableAttributedString.init(string: originalString)
+        
+        attributedStr.addAttributes([NSAttributedStringKey.foregroundColor : textColor, NSAttributedStringKey.font : UIFont.init(name: fontName, size: fontSize) as Any], range: NSRange.init(location: 0, length: attributedStr.length))
+        
+        return attributedStr
+    }
+    
     func navigateUserToTabBarController()  {
         
         //Courses

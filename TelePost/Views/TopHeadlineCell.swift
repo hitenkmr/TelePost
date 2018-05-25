@@ -30,15 +30,15 @@ class TopHeadlineCell: UITableViewCell {
     }
     
     func configureCellWith(headline : TopHeadline) {
-        self.headlineImageVw?.sd_setImage(with: URL.init(string: headline.urlToImage), placeholderImage: #imageLiteral(resourceName: "headlineImage"), options: SDWebImageOptions.continueInBackground, completed: nil)
-        self.sourceLabel.attributedText = "".attributedStringWith(boldPart: "Source : ", boldPartFontSize: 14, normalPart: headline.source.name, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: WhiteColor)
+        self.headlineImageVw?.sd_setImage(with: URL.init(string: headline.urlToImage), placeholderImage: #imageLiteral(resourceName: "news_placeholder"), options: SDWebImageOptions.continueInBackground, completed: nil)
+        self.sourceLabel.attributedText = "".attributedStringWith(boldPart: "Source : ", boldPartFontSize: 14, normalPart: headline.source.name, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: DarkGrayColor)
         
-        self.authorLabel.attributedText = "".attributedStringWith(boldPart: "Author : ", boldPartFontSize: 14, normalPart: headline.author, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: WhiteColor)
+        self.authorLabel.attributedText = "".attributedStringWith(boldPart: "Author : ", boldPartFontSize: 14, normalPart: headline.author, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: DarkGrayColor)
         
         let localDateStr = AppDelegate.formattedDateStringWith(dateStr: headline.publishedAt, currentDateFormat: "yyyy-MM-dd'T'HH:mm:ssZ", requiredDateFormat: "MM/dd/yyyy HH:mm")
-        self.dateLabel.attributedText = "".attributedStringWith(boldPart: "Date : ", boldPartFontSize: 14, normalPart: localDateStr, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: WhiteColor)
-        self.titleLabel.attributedText = "".attributedStringWith(boldPart: "Title : ", boldPartFontSize: 14, normalPart: headline.title, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: WhiteColor)
-        self.descriptionLabel.attributedText = "".attributedStringWith(boldPart: "Description : ", boldPartFontSize: 14, normalPart: headline.desc, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: WhiteColor)
+        self.dateLabel.attributedText = "".attributedStringWith(boldPart: "Date : ", boldPartFontSize: 14, normalPart: localDateStr, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: DarkGrayColor)
+        self.titleLabel.attributedText = "".attributedStringWith(boldPart: "Title : ", boldPartFontSize: 14, normalPart: headline.title, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: DarkGrayColor)
+        self.descriptionLabel.attributedText = "".attributedStringWith(boldPart: "Description : ", boldPartFontSize: 14, normalPart: headline.desc, normalPartFontSize: 12, boldPartTextColor: BlackColor, normalPartTextColor: DarkGrayColor)
     }
     
 }
