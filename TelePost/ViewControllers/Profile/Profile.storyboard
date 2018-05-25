@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ProfileVC-->
+        <scene sceneID="Yxp-f6-RRd">
+            <objects>
+                <viewController storyboardIdentifier="ProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kMe-5S-ccy" customClass="ProfileVC" customModule="TelePost" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6TR-ng-cTM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group" translatesAutoresizingMaskIntoConstraints="NO" id="fCH-Yq-xgE">
+                                <rect key="frame" x="20" y="40" width="335" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="hI1-hj-jY6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Va-y9-y9h">
+                                <rect key="frame" x="20" y="350" width="335" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WdM-2h-jg6" firstAttribute="trailing" secondItem="0Va-y9-y9h" secondAttribute="trailing" constant="20" id="1H6-q4-WmD"/>
+                            <constraint firstItem="0Va-y9-y9h" firstAttribute="leading" secondItem="WdM-2h-jg6" secondAttribute="leading" constant="20" id="9ah-Ha-tbV"/>
+                            <constraint firstItem="fCH-Yq-xgE" firstAttribute="leading" secondItem="WdM-2h-jg6" secondAttribute="leading" constant="20" id="f2n-Eh-hTF"/>
+                            <constraint firstItem="0Va-y9-y9h" firstAttribute="top" secondItem="fCH-Yq-xgE" secondAttribute="bottom" constant="30" id="nkx-ad-9Uh"/>
+                            <constraint firstItem="WdM-2h-jg6" firstAttribute="trailing" secondItem="fCH-Yq-xgE" secondAttribute="trailing" constant="20" id="uEk-Cn-F6Z"/>
+                            <constraint firstItem="fCH-Yq-xgE" firstAttribute="top" secondItem="WdM-2h-jg6" secondAttribute="top" constant="20" id="uHX-I2-bEh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WdM-2h-jg6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lXx-dg-qMF"/>
+                    <connections>
+                        <outlet property="userImageView" destination="fCH-Yq-xgE" id="087-8S-G4x"/>
+                        <outlet property="userNameLabel" destination="0Va-y9-y9h" id="Kgh-Py-Iva"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEr-sJ-odd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880.79999999999995" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Group" width="945" height="750"/>
+    </resources>
+</document>

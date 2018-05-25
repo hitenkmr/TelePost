@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lA0-NG-4ak">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainVC-->
+        <scene sceneID="Ybc-Cj-dfW">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lA0-NG-4ak" customClass="MainVC" customModule="TelePost" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rBL-xj-aGT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-Fe-Awq">
+                                <rect key="frame" x="62.5" y="308.5" width="250" height="50"/>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.72941176470000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="X5Z-Yc-KrO"/>
+                                    <constraint firstAttribute="height" constant="50" id="hwN-aO-OkB"/>
+                                </constraints>
+                                <state key="normal" title="Login via Steem-Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="lA0-NG-4ak" eventType="touchUpInside" id="gpS-U0-afb"/>
+                                    <segue destination="ULL-Kp-0Dm" kind="show" identifier="showLoginVC" id="UYz-xb-8mJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fvA-Fe-Awq" firstAttribute="centerY" secondItem="rBL-xj-aGT" secondAttribute="centerY" id="K06-XZ-36d"/>
+                            <constraint firstItem="fvA-Fe-Awq" firstAttribute="centerX" secondItem="7U9-we-ctU" secondAttribute="centerX" id="mbX-PX-4HO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7U9-we-ctU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOG-Bl-bDt" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1206" y="-918"/>
+        </scene>
+        <!--LoginVC-->
+        <scene sceneID="pTR-pe-cyU">
+            <objects>
+                <viewController id="ULL-Kp-0Dm" customClass="LoginVC" customModule="TelePost" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E2b-ee-yFu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CGd-Yv-vZs">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbV-8x-V27">
+                                <rect key="frame" x="20" y="30" width="50" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Lun-h7-khG"/>
+                                    <constraint firstAttribute="height" constant="35" id="jxV-Bi-zt2"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelBtnAction:" destination="ULL-Kp-0Dm" eventType="touchUpInside" id="W5y-Xa-5BP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CGd-Yv-vZs" firstAttribute="bottom" secondItem="k9K-xA-axm" secondAttribute="bottom" id="2mT-GB-j7x"/>
+                            <constraint firstItem="MbV-8x-V27" firstAttribute="leading" secondItem="k9K-xA-axm" secondAttribute="leading" constant="20" id="3mp-Pw-WOA"/>
+                            <constraint firstItem="CGd-Yv-vZs" firstAttribute="leading" secondItem="k9K-xA-axm" secondAttribute="leading" id="47S-ZG-U3f"/>
+                            <constraint firstItem="CGd-Yv-vZs" firstAttribute="top" secondItem="k9K-xA-axm" secondAttribute="top" id="7qp-Ze-rYR"/>
+                            <constraint firstItem="MbV-8x-V27" firstAttribute="top" secondItem="k9K-xA-axm" secondAttribute="top" constant="10" id="Z2s-e5-1H4"/>
+                            <constraint firstItem="CGd-Yv-vZs" firstAttribute="trailing" secondItem="k9K-xA-axm" secondAttribute="trailing" id="eOQ-N4-qEQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="k9K-xA-axm"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelBtn" destination="MbV-8x-V27" id="7ax-aI-WCs"/>
+                        <outlet property="webView" destination="CGd-Yv-vZs" id="XVm-TB-KOf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DjS-fj-XSW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-410.625" y="-919.0140845070423"/>
+        </scene>
+    </scenes>
+</document>
