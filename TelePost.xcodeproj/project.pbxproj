@@ -38,6 +38,10 @@
 		BE537C3920ACE7C500676CBD /* StoryboardInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE537C3820ACE7C500676CBD /* StoryboardInstantiation.swift */; };
 		BE537C3B20ACE7CE00676CBD /* ConstaintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE537C3A20ACE7CE00676CBD /* ConstaintMaker.swift */; };
 		BE537C3D20AD795100676CBD /* CountryTopHeadlinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE537C3C20AD795100676CBD /* CountryTopHeadlinesCollectionViewCell.swift */; };
+		BE96E26F20BE72E800DEA26F /* SteemNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E26E20BE72E800DEA26F /* SteemNewsVC.swift */; };
+		BE96E27220BE81E000DEA26F /* SteemNewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27120BE81E000DEA26F /* SteemNewsTableCell.swift */; };
+		BE96E27420BE82F500DEA26F /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27320BE82F400DEA26F /* UIView+Additions.swift */; };
+		BE96E27620BE843800DEA26F /* SteemNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27520BE843800DEA26F /* SteemNews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +101,10 @@
 		BE537C3820ACE7C500676CBD /* StoryboardInstantiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiation.swift; sourceTree = "<group>"; };
 		BE537C3A20ACE7CE00676CBD /* ConstaintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstaintMaker.swift; sourceTree = "<group>"; };
 		BE537C3C20AD795100676CBD /* CountryTopHeadlinesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTopHeadlinesCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE96E26E20BE72E800DEA26F /* SteemNewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteemNewsVC.swift; sourceTree = "<group>"; };
+		BE96E27120BE81E000DEA26F /* SteemNewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteemNewsTableCell.swift; sourceTree = "<group>"; };
+		BE96E27320BE82F400DEA26F /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		BE96E27520BE843800DEA26F /* SteemNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteemNews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +153,7 @@
 		BE16DA4520B5A23200B4CC44 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				BE96E26E20BE72E800DEA26F /* SteemNewsVC.swift */,
 				BE218A1320ACD04F003DE215 /* TopHeadlinesVC.swift */,
 				BE537C3620ACE69F00676CBD /* TelePostWebViewVC.swift */,
 				BE16DA4620B5A28E00B4CC44 /* News.storyboard */,
@@ -289,8 +298,7 @@
 		BE537C2820ACD61900676CBD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BE537C2920ACD64300676CBD /* TopHeadlineCell.swift */,
-				BE537C3C20AD795100676CBD /* CountryTopHeadlinesCollectionViewCell.swift */,
+				BE96E27020BE81B800DEA26F /* News */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,27 +307,39 @@
 			isa = PBXGroup;
 			children = (
 				BE16DA5020B7F6B900B4CC44 /* User */,
-				BE537C2E20ACD82000676CBD /* Top Headline */,
+				BE537C2E20ACD82000676CBD /* news */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		BE537C2E20ACD82000676CBD /* Top Headline */ = {
+		BE537C2E20ACD82000676CBD /* news */ = {
 			isa = PBXGroup;
 			children = (
 				BE537C2C20ACD7F300676CBD /* TopHeadline.swift */,
 				BE537C2F20ACD84900676CBD /* Source.swift */,
+				BE96E27520BE843800DEA26F /* SteemNews.swift */,
 			);
-			path = "Top Headline";
+			path = news;
 			sourceTree = "<group>";
 		};
 		BE537C3120ACDCFD00676CBD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BE96E27320BE82F400DEA26F /* UIView+Additions.swift */,
 				BE537C3220ACDD0800676CBD /* UIViewController+Additions.swift */,
 				BE537C3420ACE13D00676CBD /* NSAttributedString.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BE96E27020BE81B800DEA26F /* News */ = {
+			isa = PBXGroup;
+			children = (
+				BE537C3C20AD795100676CBD /* CountryTopHeadlinesCollectionViewCell.swift */,
+				BE537C2920ACD64300676CBD /* TopHeadlineCell.swift */,
+				BE96E27120BE81E000DEA26F /* SteemNewsTableCell.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -509,10 +529,14 @@
 				BE16DA4D20B5A49D00B4CC44 /* ProfileVC.swift in Sources */,
 				BE218A1120ACC01F003DE215 /* APIRequestParameters.swift in Sources */,
 				BE16DA4320B5A19400B4CC44 /* LoginVC.swift in Sources */,
+				BE96E27220BE81E000DEA26F /* SteemNewsTableCell.swift in Sources */,
+				BE96E27420BE82F500DEA26F /* UIView+Additions.swift in Sources */,
 				BE537C3720ACE69F00676CBD /* TelePostWebViewVC.swift in Sources */,
+				BE96E26F20BE72E800DEA26F /* SteemNewsVC.swift in Sources */,
 				BE2189DC20AC68C5003DE215 /* TPAppDelegate.swift in Sources */,
 				BE537C3020ACD84900676CBD /* Source.swift in Sources */,
 				BE218A0C20AC6A49003DE215 /* API.swift in Sources */,
+				BE96E27620BE843800DEA26F /* SteemNews.swift in Sources */,
 				BE16DA5220B7F6CF00B4CC44 /* SteemitUser.swift in Sources */,
 				BE218A0A20AC6A39003DE215 /* Constants.swift in Sources */,
 				BE16DA3F20B5A17900B4CC44 /* Client.swift in Sources */,

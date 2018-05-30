@@ -9,9 +9,9 @@
 import UIKit
 
 class TopHeadlinesVC: UIViewController {
-
+    
     @IBOutlet weak var countryTopHeadlinesCollectionView : UICollectionView!
- 
+    
     var countries = [CountryProtocol]()
     var currentHeadlines = [TopHeadline]()
     var currentIndexPath = IndexPath.init(row: 0, section: 0)
@@ -33,32 +33,34 @@ class TopHeadlinesVC: UIViewController {
     
     func gettopHeadlinesWith(countryCode: String) {
         self.startAnimator()
-        APIMaster.getTopHeadlinesWith(countryCode: countryCode, completion: { (json, httpResponse) in
+        APIMaster.getTopHeadlinesWith(countryCode: countryCode, completion: { (anyObject, httpResponse) in
             DispatchQueue.main.async(execute: {
                 self.stopAnimator()
             })
-            guard let json = json else {
+            guard let _ = anyObject else {
                 self.showAlertWith(title: "Error", message: Messages.UnableToLoadfeeds)
                 return
             }
-            if httpResponse.statusCode == 200 {
-                if let articles = json["articles"] as? [[String : Any]] {
-                    var headlines = [TopHeadline]()
-                    articles.forEach({ (article) in
-                        let articleModel = TopHeadline.init(info: article)
-                        headlines.append(articleModel)
+            if let json = anyObject as? NSDictionary {
+                if httpResponse.statusCode == 200 {
+                    if let articles = json["articles"] as? [[String : Any]] {
+                        var headlines = [TopHeadline]()
+                        articles.forEach({ (article) in
+                            let articleModel = TopHeadline.init(info: article)
+                            headlines.append(articleModel)
+                        })
+                        self.currentHeadlines = headlines
+                    }
+                    DispatchQueue.main.async(execute: {
+                        self.countryTopHeadlinesCollectionView.reloadData()
                     })
-                    self.currentHeadlines = headlines
+                } else {
+                    var errorMsg = Messages.InternalServerError
+                    if let message = json["message"] as? String {
+                        errorMsg = message
+                    }
+                    self.showAlertWith(title: "Error", message:errorMsg)
                 }
-                DispatchQueue.main.async(execute: {
-                    self.countryTopHeadlinesCollectionView.reloadData()
-                })
-            } else {
-                var errorMsg = Messages.InternalServerError
-                if let message = json["message"] as? String {
-                    errorMsg = message
-                }
-                self.showAlertWith(title: "Error", message:errorMsg)
             }
         }) { (error) in
             DispatchQueue.main.async(execute: {
@@ -78,7 +80,7 @@ extension TopHeadlinesVC : UICollectionViewDataSource, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell : CountryTopHeadlinesCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CountryTopHeadlinesCollectionViewCell", for: indexPath) as! CountryTopHeadlinesCollectionViewCell
+        let cell : CountryTopHeadlinesCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CountryTopHeadlinesCollectionViewCell", for: indexPath) as! CountryTopHeadlinesCollectionViewCell
         cell.delegate = self
         cell.headLines = self.currentHeadlines
         cell.topHeadlinesTableView.reloadData()
@@ -90,11 +92,11 @@ extension TopHeadlinesVC : UICollectionViewDataSource, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return collectionView.frame.size
-     }
+        return collectionView.frame.size
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-         return UIEdgeInsetsMake(0, 0, 0, 0)
+        return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -118,10 +120,10 @@ extension TopHeadlinesVC : CountryTopHeadlinesCollectionViewCellDelegate {
     
     func didClickHeadlineWith(indexPath: IndexPath) {
         let objTelePostWebViewVC : TelePostWebViewVC = TelePostWebViewVC.instantiateWithStoryboard(appStoryboard: .SB_News) as! TelePostWebViewVC
-         let headline = self.currentHeadlines[indexPath.row]
-         objTelePostWebViewVC.titleText = headline.title
-         objTelePostWebViewVC.url = URL.init(string: headline.url)
-         self.present(objTelePostWebViewVC, animated: true, completion: nil)
+        let headline = self.currentHeadlines[indexPath.row]
+        objTelePostWebViewVC.titleText = headline.title
+        objTelePostWebViewVC.url = URL.init(string: headline.url)
+        self.present(objTelePostWebViewVC, animated: true, completion: nil)
     }
 }
 

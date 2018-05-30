@@ -57,22 +57,24 @@ class ProfileVC: UIViewController {
     
     func getUserProfileWith(username : String) {
         self.startAnimator()
-        APIMaster.getUserSteemitProfile(user_name: username, completion: { (json, httpResponse) in
+        APIMaster.getUserSteemitProfile(user_name: username, completion: { (anyObject, httpResponse) in
             DispatchQueue.main.async(execute: {
                 self.stopAnimator()
-             })
-            if let jsonObj = json, let status = jsonObj["status"] as? String {
-                if status == "200" {
-                    if let userInfo = jsonObj["user"] as? [String : Any] {
-                        let userModel = SteemitUser.init(info: userInfo)
+            })
+            if let jsonObj = anyObject as? [String : Any] {
+                if let status = jsonObj["status"] as? String {
+                    if status == "200" {
+                        if let userInfo = jsonObj["user"] as? [String : Any] {
+                            let userModel = SteemitUser.init(info: userInfo)
+                            DispatchQueue.main.async(execute: {
+                                self.updateuserDetailsWith(user: userModel)
+                            })
+                        }
+                    } else {
                         DispatchQueue.main.async(execute: {
-                            self.updateuserDetailsWith(user: userModel)
+                            self.showAlertWith(title: "Error", message: Messages.InternalServerError)
                         })
                     }
-                } else {
-                    DispatchQueue.main.async(execute: {
-                        self.showAlertWith(title: "Error", message: Messages.InternalServerError)
-                    })
                 }
             }
         }) { (error) in

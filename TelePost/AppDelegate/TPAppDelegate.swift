@@ -54,6 +54,8 @@ class TPAppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    //MARK: Helpers
+    
     func formattedDateStringWith(dateStr : String, currentDateFormat : String, requiredDateFormat : String) -> String {
         var requiredDateStr = ""
         //let components = dateStr.components(separatedBy: ".")
@@ -83,7 +85,7 @@ class TPAppDelegate: UIResponder, UIApplicationDelegate {
     
     func navigateUserToTabBarController()  {
         
-        //Courses
+        //News API
         let objTopHeadlinesVC : TopHeadlinesVC = TopHeadlinesVC.instantiateWithStoryboard(appStoryboard: AppStoryboard.SB_News) as! TopHeadlinesVC
         
         let newsNavController : UINavigationController = UINavigationController.init(rootViewController: objTopHeadlinesVC)
@@ -102,7 +104,27 @@ class TPAppDelegate: UIResponder, UIApplicationDelegate {
         // playlistsItem.selectedImage = Icon.playlist.image(selected: true)
         objTopHeadlinesVC.tabBarItem = newsItem
         
-        //Progress
+        //MARK: STEEM NEWS
+        
+        let objSteemNewsVC : SteemNewsVC = SteemNewsVC.instantiateWithStoryboard(appStoryboard: AppStoryboard.SB_News) as! SteemNewsVC
+        
+        let steemNewsNavController : UINavigationController = UINavigationController.init(rootViewController: objSteemNewsVC)
+        // newsNavController.isNavigationBarHidden = true
+        let steemNewsItem : UITabBarItem = UITabBarItem.init(title: "SteemN", image: TabbarIcon.tabbarIcon_news.image().withRenderingMode(.alwaysTemplate), tag: 11111)
+        steemNewsItem.selectedImage = TabbarIcon.tabbarIcon_news.image(selected: true).withRenderingMode(.alwaysTemplate)
+        
+        steemNewsItem.titlePositionAdjustment = UIOffset.init(horizontal: 0, vertical: 0)
+        
+        if #available(iOS 10.0, *) {
+            steemNewsItem.badgeColor = BlackColor
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        // playlistsItem.selectedImage = Icon.playlist.image(selected: true)
+        objSteemNewsVC.tabBarItem = steemNewsItem
+        
+        //Profile
         
         let profileItem : UITabBarItem = UITabBarItem.init(title: "Profile", image: TabbarIcon.tabbarIcon_profile.image().withRenderingMode(.alwaysTemplate), tag: 22222)
         profileItem.titlePositionAdjustment = UIOffset.init(horizontal: 0, vertical: 0)
@@ -145,7 +167,7 @@ class TPAppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: .selected)
         //UITabBar.appearance().tintColor = ColorTheme
         
-        objTPTabBarController?.viewControllers = [newsNavController, profileNavController]
+        objTPTabBarController?.viewControllers = [steemNewsNavController, newsNavController, profileNavController]
         objTPTabBarController?.selectedIndex = 0
         
         // self.addwhiteSpaceBetweenTabbars()
