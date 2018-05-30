@@ -150,7 +150,7 @@ extension UIViewController : NVActivityIndicatorViewable {
     //Helpers
     
     func startAnimator() {
-        self.startAnimating(CGSize.init(width: 60, height: 60), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballClipRotateMultiple, color: ColorTheme, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
+        self.startAnimating(CGSize.init(width: 60, height: 60), message: nil, messageFont: nil, type: NVActivityIndicatorType.orbit, color: ColorTheme, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
     }
     
     func stopAnimator() {

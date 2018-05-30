@@ -5,5 +5,6 @@ target 'TelePost' do
     pod 'SDWebImage', '~> 4.0'
     pod 'ReachabilitySwift', '~> 3.0'
     pod 'NVActivityIndicatorView', '~> 4.1'
+    pod 'AFNetworking'
 end
 

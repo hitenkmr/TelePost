@@ -181,6 +181,8 @@ func TemplateImage(imageNamed : String?) -> UIImage?{
 }
 
 enum TabbarIcon: String {
+    case tabbarIcon_sn_news
+    case tabbarIcon_sn_news_selected
     case tabbarIcon_news
     case tabbarIcon_news_selected
     case tabbarIcon_profile

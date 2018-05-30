@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pink-background" translatesAutoresizingMaskIntoConstraints="NO" id="OVZ-Yo-ojD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-bZ-mAF">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
@@ -104,7 +104,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WdM-2h-jg6" firstAttribute="trailing" secondItem="OVZ-Yo-ojD" secondAttribute="trailing" id="0pc-fU-Ubq"/>
-                            <constraint firstItem="OVZ-Yo-ojD" firstAttribute="top" secondItem="WdM-2h-jg6" secondAttribute="top" id="9rz-oU-6gy"/>
+                            <constraint firstItem="OVZ-Yo-ojD" firstAttribute="top" secondItem="6TR-ng-cTM" secondAttribute="top" id="9rz-oU-6gy"/>
                             <constraint firstItem="WdM-2h-jg6" firstAttribute="bottom" secondItem="OVZ-Yo-ojD" secondAttribute="bottom" id="FrB-iF-Icg"/>
                             <constraint firstItem="qcF-bZ-mAF" firstAttribute="trailing" secondItem="WdM-2h-jg6" secondAttribute="trailing" id="Igq-bJ-n0V"/>
                             <constraint firstItem="qcF-bZ-mAF" firstAttribute="leading" secondItem="WdM-2h-jg6" secondAttribute="leading" id="KRl-TF-G1n"/>

@@ -110,8 +110,8 @@ class TPAppDelegate: UIResponder, UIApplicationDelegate {
         
         let steemNewsNavController : UINavigationController = UINavigationController.init(rootViewController: objSteemNewsVC)
         // newsNavController.isNavigationBarHidden = true
-        let steemNewsItem : UITabBarItem = UITabBarItem.init(title: "SteemN", image: TabbarIcon.tabbarIcon_news.image().withRenderingMode(.alwaysTemplate), tag: 11111)
-        steemNewsItem.selectedImage = TabbarIcon.tabbarIcon_news.image(selected: true).withRenderingMode(.alwaysTemplate)
+        let steemNewsItem : UITabBarItem = UITabBarItem.init(title: "SteemNews", image: TabbarIcon.tabbarIcon_sn_news.image().withRenderingMode(.alwaysTemplate), tag: 11111)
+        steemNewsItem.selectedImage = TabbarIcon.tabbarIcon_sn_news_selected.image(selected: true).withRenderingMode(.alwaysTemplate)
         
         steemNewsItem.titlePositionAdjustment = UIOffset.init(horizontal: 0, vertical: 0)
         

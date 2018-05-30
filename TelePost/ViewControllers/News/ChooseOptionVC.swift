@@ -1,8 +1,8 @@
 //
 //  ChooseOptionVC.swift
-//  HowNowSchool
+//  TelePost
 //
-//  Created by Hitender kumar on 05/04/18.
+//  Created by Hitender kumar on 30/05/18.
 //  Copyright © 2018 Hitender kumar. All rights reserved.
 //
 

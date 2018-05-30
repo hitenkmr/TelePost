@@ -27,27 +27,14 @@ class SteemNewsVC: UIViewController {
             NSAttributedStringKey.font: UIFont(name: CustomFonts.Montserrat.bold, size: 16)!]
         
         newsCategoryBarBtnItem.setTitleTextAttributes(attrs, for: .normal)
-        
         navigationItem.rightBarButtonItems = [newsCategoryBarBtnItem]
         
         self.navigationItem.title = "Trending"
+        self.tableview.tableFooterView = UIView.init()
+
         self.tableview.estimatedRowHeight = 44
         self.tableview.rowHeight = UITableViewAutomaticDimension
         self.tableview.reloadData()
-    }
-    
-    @objc func newsCategoryBarBtnItemAction(item : UIBarButtonItem) {
-        let objChooseOptionVC : ChooseOptionVC = ChooseOptionVC.instantiateWithStoryboard(appStoryboard: .SB_News) as! ChooseOptionVC
-        objChooseOptionVC.optionsArray = [SteemNewsCategories.Trending.rawValue, SteemNewsCategories.Hot.rawValue, SteemNewsCategories.Promoted.rawValue]
-        objChooseOptionVC.delegate = self
-         objChooseOptionVC.view.backgroundColor = UIColor.gray
-        objChooseOptionVC.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popvc = objChooseOptionVC.popoverPresentationController
-        popvc?.delegate = self
-        popvc?.permittedArrowDirections = UIPopoverArrowDirection.any
-        popvc?.barButtonItem = item
-        objChooseOptionVC.preferredContentSize = CGSize.init(width: 200, height: 200)
-        self.present(objChooseOptionVC, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +46,22 @@ class SteemNewsVC: UIViewController {
         self.getSteemNewsWith(category: "get_discussions_by_trending")
     }
     
+    //MARK: Helpers
+    
+    @objc func newsCategoryBarBtnItemAction(item : UIBarButtonItem) {
+        let objChooseOptionVC : ChooseOptionVC = ChooseOptionVC.instantiateWithStoryboard(appStoryboard: .SB_News) as! ChooseOptionVC
+        objChooseOptionVC.optionsArray = [SteemNewsCategories.Trending.rawValue, SteemNewsCategories.Hot.rawValue, SteemNewsCategories.Promoted.rawValue]
+        objChooseOptionVC.delegate = self
+        objChooseOptionVC.view.backgroundColor = UIColor.gray
+        objChooseOptionVC.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popvc = objChooseOptionVC.popoverPresentationController
+        popvc?.delegate = self
+        popvc?.permittedArrowDirections = UIPopoverArrowDirection.any
+        popvc?.barButtonItem = item
+        objChooseOptionVC.preferredContentSize = CGSize.init(width: 200, height: 200)
+        self.present(objChooseOptionVC, animated: true, completion: nil)
+    }
+    
     //MARK: Web Services
     
     func getSteemNewsWith(category : String) {
@@ -68,16 +71,22 @@ class SteemNewsVC: UIViewController {
                 self.stopAnimator()
             })
             DispatchQueue.global(qos: .background).async(execute: {
+                self.currentNewsArray.removeAll()
                 if let jsonArray = anyObject as? [[String : Any]] {
-                    self.currentNewsArray.removeAll()
                     jsonArray.forEach({ (object) in
                         let steemNewsModel = SteemNews.init(info: object)
                         self.currentNewsArray.append(steemNewsModel)
                     })
-                    DispatchQueue.main.async(execute: {
-                        self.tableview.reloadData()
-                    })
+                } else {
+                    var errorMsg = Messages.InternalServerError
+                    if let infoArr = (anyObject as? [Any]), let errorInfo = infoArr[1] as? [String : Any], let message =  errorInfo["message"] as? String {
+                        errorMsg =  message
+                    }
+                    self.showAlertWith(title: "Error", message: errorMsg)
                 }
+                DispatchQueue.main.async(execute: {
+                    self.tableview.reloadData()
+                })
             })
         }) { (error) in
             DispatchQueue.main.async(execute: {
@@ -86,7 +95,6 @@ class SteemNewsVC: UIViewController {
             })
         }
     }
-    
 }
 
 extension SteemNewsVC : UITableViewDelegate, UITableViewDataSource {
@@ -100,6 +108,8 @@ extension SteemNewsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : SteemNewsTableCell = tableView.dequeueReusableCell(withIdentifier: "SteemNewsTableCell", for: indexPath) as! SteemNewsTableCell
+        cell.delegate = self
+        cell.upvoteBtn.tag = indexPath.section
         cell.selectionStyle = .none
         let steemNews = self.currentNewsArray[indexPath.section]
         cell.updateCellData(steemNews: steemNews)
@@ -107,7 +117,7 @@ extension SteemNewsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+ 
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -150,5 +160,28 @@ extension SteemNewsVC : UIPopoverPresentationControllerDelegate {
         return true
     }
     
+}
+
+extension SteemNewsVC : SteemNewsTableCellDeleagate {
+    
+    //MARK: SteemNewsTableCellDeleagate
+    
+    func didClickUpvoteBtn(_ sender: UIButton) {
+        self.startAnimator()
+        let steemNews = self.currentNewsArray[sender.tag]
+        let author = steemNews.author
+        let permlink = steemNews.permlink
+        STClient.downVote(voter: DataManager.sharedInstance.getUserName(), author: author, permlink: permlink, weight: 10000, to:nil) { (response, error) in
+            DispatchQueue.main.async(execute: {
+                self.stopAnimator()
+            })
+            if error != nil {
+                self.currentNewsArray[sender.tag].have_i_voted = true
+                DispatchQueue.main.async(execute: {
+                    self.tableview.reloadData()
+                })
+            }
+        }
+    }
 }
 
