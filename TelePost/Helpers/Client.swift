@@ -55,6 +55,7 @@ class STClient: NSObject {
         self.broadcast(body: ["operations":[["vote",param]]],to:to,finished: finished)
     }
     
+    //TODO: For future release/not working
     class func downVote(
         voter:String,
         author:String,
@@ -68,17 +69,6 @@ class STClient: NSObject {
                      "weight":weight,
                      ] as [String : Any]
         self.broadcast(body: ["operations":[["unvote",param]]],to:to,finished: finished)
-    }
-    
-    class func getVoteStatus(
-        author:String,
-        permlink:String,
-        to:UIView?,
-        finished:@escaping STClientCallBack){
-        let param = ["author": author,
-                     "permlink":permlink
-            ] as [String : Any]
-        self.broadcast(body: param,to:to,finished: finished)
     }
     
     //MARK: post comment
