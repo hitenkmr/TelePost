@@ -59,7 +59,7 @@ class SteemNewsTableCell: UITableViewCell {
         self.upvoteBtn.imageView?.image = #imageLiteral(resourceName: "upvote").withRenderingMode(.alwaysTemplate)
         self.upvoteBtn.tintColor = WhiteColor
         if steemNews.have_i_voted {
-            self.upvoteBtn.tintColor = RedColor
+            self.upvoteBtn.tintColor = steemNews.have_i_voted ? RedColor : WhiteColor
         }
         self.upvoteBtn.isUserInteractionEnabled = !steemNews.have_i_voted
     }

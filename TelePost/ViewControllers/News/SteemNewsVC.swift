@@ -82,9 +82,11 @@ class SteemNewsVC: UIViewController {
                     if let infoArr = (anyObject as? [Any]), let errorInfo = infoArr[1] as? [String : Any], let message =  errorInfo["message"] as? String {
                         errorMsg =  message
                     }
-                    self.showAlertWith(title: "Error", message: errorMsg)
+                    DispatchQueue.main.async(execute: {
+                        self.showAlertWith(title: "Error", message: errorMsg)
+                    })
                 }
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     self.tableview.reloadData()
                 })
             })
@@ -171,14 +173,15 @@ extension SteemNewsVC : SteemNewsTableCellDeleagate {
         let steemNews = self.currentNewsArray[sender.tag]
         let author = steemNews.author
         let permlink = steemNews.permlink
-        STClient.downVote(voter: DataManager.sharedInstance.getUserName(), author: author, permlink: permlink, weight: 10000, to:nil) { (response, error) in
+        STClient.vote(voter: DataManager.sharedInstance.getUserName(), author: author, permlink: permlink, weight: 10000, to:nil) { (response, error) in
             DispatchQueue.main.async(execute: {
                 self.stopAnimator()
             })
-            if error != nil {
+            if error == nil {
                 self.currentNewsArray[sender.tag].have_i_voted = true
                 DispatchQueue.main.async(execute: {
                     self.tableview.reloadData()
+                    self.tableview.scrollToRow(at: IndexPath.init(row: 0, section: sender.tag), at: UITableViewScrollPosition.middle, animated: true)
                 })
             }
         }
