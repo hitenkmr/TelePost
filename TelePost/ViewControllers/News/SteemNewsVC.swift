@@ -8,18 +8,46 @@
 
 import UIKit
 
+enum SteemNewsCategories : String {
+    case Trending = "Trending"
+    case Hot = "Hot"
+    case Promoted = "Promoted"
+}
+
 class SteemNewsVC: UIViewController {
     
     @IBOutlet weak var tableview : UITableView!
-    
     var currentNewsArray = [SteemNews]()
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let newsCategoryBarBtnItem = UIBarButtonItem(title: "Discussion", style: .plain, target: self, action: #selector(self.newsCategoryBarBtnItemAction(item:)))
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.black,
+            NSAttributedStringKey.font: UIFont(name: CustomFonts.Montserrat.bold, size: 16)!]
+        
+        newsCategoryBarBtnItem.setTitleTextAttributes(attrs, for: .normal)
+        
+        navigationItem.rightBarButtonItems = [newsCategoryBarBtnItem]
+        
         self.navigationItem.title = "Trending"
         self.tableview.estimatedRowHeight = 44
         self.tableview.rowHeight = UITableViewAutomaticDimension
         self.tableview.reloadData()
+    }
+    
+    @objc func newsCategoryBarBtnItemAction(item : UIBarButtonItem) {
+        let objChooseOptionVC : ChooseOptionVC = ChooseOptionVC.instantiateWithStoryboard(appStoryboard: .SB_News) as! ChooseOptionVC
+        objChooseOptionVC.optionsArray = [SteemNewsCategories.Trending.rawValue, SteemNewsCategories.Hot.rawValue, SteemNewsCategories.Promoted.rawValue]
+        objChooseOptionVC.delegate = self
+         objChooseOptionVC.view.backgroundColor = UIColor.gray
+        objChooseOptionVC.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popvc = objChooseOptionVC.popoverPresentationController
+        popvc?.delegate = self
+        popvc?.permittedArrowDirections = UIPopoverArrowDirection.any
+        popvc?.barButtonItem = item
+        objChooseOptionVC.preferredContentSize = CGSize.init(width: 200, height: 200)
+        self.present(objChooseOptionVC, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,6 +69,7 @@ class SteemNewsVC: UIViewController {
             })
             DispatchQueue.global(qos: .background).async(execute: {
                 if let jsonArray = anyObject as? [[String : Any]] {
+                    self.currentNewsArray.removeAll()
                     jsonArray.forEach({ (object) in
                         let steemNewsModel = SteemNews.init(info: object)
                         self.currentNewsArray.append(steemNewsModel)
@@ -88,5 +117,38 @@ extension SteemNewsVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10.0
     }
+}
+
+extension SteemNewsVC : ChooseOptionVCDelegate {
+    
+    //MARK: ChooseOptionVCDelegate
+    
+    func didSelectOption(_ option: String, observingObject: Any?) {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.navigationItem.title = option
+        var cat = "get_discussions_by_trending"
+        if option == SteemNewsCategories.Trending.rawValue {
+            cat = "get_discussions_by_trending"
+        } else if option == SteemNewsCategories.Hot.rawValue {
+            cat = "get_discussions_by_hot"
+        } else if option == SteemNewsCategories.Promoted.rawValue {
+            cat = "get_discussions_by_promoted"
+        }
+        self.getSteemNewsWith(category: cat)
+    }
+}
+
+extension SteemNewsVC : UIPopoverPresentationControllerDelegate {
+    
+    //MARK: UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
+    
 }
 

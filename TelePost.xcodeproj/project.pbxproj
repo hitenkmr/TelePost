@@ -42,6 +42,7 @@
 		BE96E27220BE81E000DEA26F /* SteemNewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27120BE81E000DEA26F /* SteemNewsTableCell.swift */; };
 		BE96E27420BE82F500DEA26F /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27320BE82F400DEA26F /* UIView+Additions.swift */; };
 		BE96E27620BE843800DEA26F /* SteemNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27520BE843800DEA26F /* SteemNews.swift */; };
+		BE96E27820BE9C8A00DEA26F /* ChooseOptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96E27720BE9C8900DEA26F /* ChooseOptionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		BE96E27120BE81E000DEA26F /* SteemNewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteemNewsTableCell.swift; sourceTree = "<group>"; };
 		BE96E27320BE82F400DEA26F /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		BE96E27520BE843800DEA26F /* SteemNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteemNews.swift; sourceTree = "<group>"; };
+		BE96E27720BE9C8900DEA26F /* ChooseOptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseOptionVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		BE16DA4520B5A23200B4CC44 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				BE96E27720BE9C8900DEA26F /* ChooseOptionVC.swift */,
 				BE96E26E20BE72E800DEA26F /* SteemNewsVC.swift */,
 				BE218A1320ACD04F003DE215 /* TopHeadlinesVC.swift */,
 				BE537C3620ACE69F00676CBD /* TelePostWebViewVC.swift */,
@@ -528,6 +531,7 @@
 				BE537C2D20ACD7F300676CBD /* TopHeadline.swift in Sources */,
 				BE16DA4D20B5A49D00B4CC44 /* ProfileVC.swift in Sources */,
 				BE218A1120ACC01F003DE215 /* APIRequestParameters.swift in Sources */,
+				BE96E27820BE9C8A00DEA26F /* ChooseOptionVC.swift in Sources */,
 				BE16DA4320B5A19400B4CC44 /* LoginVC.swift in Sources */,
 				BE96E27220BE81E000DEA26F /* SteemNewsTableCell.swift in Sources */,
 				BE96E27420BE82F500DEA26F /* UIView+Additions.swift in Sources */,
